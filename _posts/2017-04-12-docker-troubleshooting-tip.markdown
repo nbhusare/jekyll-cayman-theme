@@ -14,6 +14,7 @@ SET DOCKER_TLS_VERIFY=1 SET DOCKER_HOST=tcp://192.168.99.100:2376 SET DOCKER_CER
 ```
 To fix this issue, you'll have to set up your Docker client using command *`docker-machine env [OPTIONS] [arg...]`*. PS [docker-machine env](https://docs.docker.com/machine/reference/env/) for more details
 
+
 * **Bash** : *docker-machine env --shell bash default*
 ```export DOCKER_TLS_VERIFY="1"
 export DOCKER_HOST="tcp://192.168.99.100:2376"
