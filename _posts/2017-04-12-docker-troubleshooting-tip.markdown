@@ -15,7 +15,7 @@ SET DOCKER_TLS_VERIFY=1 SET DOCKER_HOST=tcp://192.168.99.100:2376 SET DOCKER_CER
 
 This is because your Docker client environment is not set. Command *`docker-machine env [OPTIONS] [arg...]`* will display the commands to set up the required environment. PS [docker-machine env](https://docs.docker.com/machine/reference/env/) for more details
 
-* **Bash** - *docker-machine env --shell bash default*
+* **Bash** : *docker-machine env --shell bash default*
 ```export DOCKER_TLS_VERIFY="1"
 export DOCKER_HOST="tcp://192.168.99.100:2376"
 export DOCKER_CERT_PATH="C:\Users\neera\.docker\machine\machines\default"
@@ -26,7 +26,7 @@ OR
 eval "$(docker-machine env dev)"
 ```
 
-* **cmd.exe** - *docker-machine env --shell cmd default*
+* **cmd.exe** : *docker-machine env --shell cmd default*
 ```SET DOCKER_TLS_VERIFY=1
 SET DOCKER_HOST=tcp://192.168.99.100:2376
 SET DOCKER_CERT_PATH=C:\Users\neera\.docker\machine\machines\default
@@ -34,7 +34,7 @@ SET DOCKER_MACHINE_NAME=default
 SET COMPOSE_CONVERT_WINDOWS_PATHS=true
 ```
 
-* **PowerShell** - *docker-machine env --shell powershell default*
+* **PowerShell** : *docker-machine env --shell powershell default*
 ```$Env:DOCKER_TLS_VERIFY = "1"
 $Env:DOCKER_HOST = "tcp://192.168.99.100:2376"
 $Env:DOCKER_CERT_PATH = "C:\Users\neera\.docker\machine\machines\default"
