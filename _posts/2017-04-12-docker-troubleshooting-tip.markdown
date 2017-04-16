@@ -9,17 +9,33 @@ If you are using 64bit Windows 10 Pro, Enterprise and Education editions, the re
 
 Docker Toolbox will install following tools - Docker CLI, Docker Machine, Docker Compose, Kitematic, Docker QuickStart shell and Oracle VM VirtualBox. You can right away start using the Docker Quick Start shell to execute the docker commands. If you try using shells like bash or cmd or powershell, there are good chances that you'll see the following error
 
->SET DOCKER_TLS_VERIFY=1 SET DOCKER_HOST=tcp://192.168.99.100:2376 SET DOCKER_CERT_PATH=C:\Users\neepal.docker\machine\machines\default SET DOCKER_MACHINE_NAME=default SET COMPOSE_CONVERT_WINDOWS_PATHS=true REM Run this command to configure your shell: REM @FOR /f "tokens=*" %i IN ('docker-machine env default') DO @%i
+```
+SET DOCKER_TLS_VERIFY=1 SET DOCKER_HOST=tcp://192.168.99.100:2376 SET DOCKER_CERT_PATH=C:\Users\neepal.docker\machine\machines\default SET DOCKER_MACHINE_NAME=default SET COMPOSE_CONVERT_WINDOWS_PATHS=true REM Run this command to configure your shell: REM @FOR /f "tokens=*" %i IN ('docker-machine env default') DO @%i
+```
 
-To address this issue, you'll have to set the environment for your Docker client. `docker-machine env [OPTIONS] [arg...]` will display the commands to set up the required environment. 
+To fix this issue, you'll have to set the environment for your Docker client. Command `docker-machine env [OPTIONS] [arg...]` will display the commands to set up the required environment. 
 
-* If you are using bash
-eval "$(docker-machine env dev)"
+* **Bash** - docker-machine env --shell bash default
+```export DOCKER_TLS_VERIFY="1"
+export DOCKER_HOST="tcp://192.168.99.100:2376"
+export DOCKER_CERT_PATH="C:\Users\neera\.docker\machine\machines\default"
+export DOCKER_MACHINE_NAME="default" 
+```
 
-* If you are using cmd
+* **cmd** - docker-machine env --shell cmd default
+```SET DOCKER_TLS_VERIFY=1
+SET DOCKER_HOST=tcp://192.168.99.100:2376
+SET DOCKER_CERT_PATH=C:\Users\neera\.docker\machine\machines\default
+SET DOCKER_MACHINE_NAME=default
+SET COMPOSE_CONVERT_WINDOWS_PATHS=true
+```
 
+* **powershell** - docker-machine env --shell powershell default
+```$Env:DOCKER_TLS_VERIFY = "1"
+$Env:DOCKER_HOST = "tcp://192.168.99.100:2376"
+$Env:DOCKER_CERT_PATH = "C:\Users\neera\.docker\machine\machines\default"
+$Env:DOCKER_MACHINE_NAME = "default"
+$Env:COMPOSE_CONVERT_WINDOWS_PATHS = "true"
+```
 
-* If you are using powershell
-
-
-You need to set the environment for the Docker client so that the commands are run against the docker host. 
+After setting the above commands, if you run a docker command, it will run against the Docker host.
