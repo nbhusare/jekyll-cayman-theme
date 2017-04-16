@@ -42,4 +42,4 @@ $Env:DOCKER_MACHINE_NAME = "default"
 $Env:COMPOSE_CONVERT_WINDOWS_PATHS = "true"
 ```
 
-After setting the above commands, if you run a docker command, it will run against the Docker host.
+After setting the above commands, all your docker commands will run against the Docker host.
