@@ -15,7 +15,7 @@ Model:
 	'model' name=ID 'extends' parent=JvmTypeReference;	
 ```
 
-When you set the parent, the respective import is automaticaly added to your file (BUG - [377860](https://bugs.eclipse.org/bugs/show_bug.cgi?id=377860)). You could also use Organize imports to do so. One of the problems you might face is that the import gets added in the wrong location (PS example below). Here I refer a type AnnotatedArrayType and on content assist, the import gets added in the wrong location.
+When you set the parent, an import is automaticaly added to your file (BUG - [377860](https://bugs.eclipse.org/bugs/show_bug.cgi?id=377860)). You could also use Organize imports to do so. One of the problems you might face is that the import gets added in the wrong location (PS example below).
 
 ```
 model foo extends 
