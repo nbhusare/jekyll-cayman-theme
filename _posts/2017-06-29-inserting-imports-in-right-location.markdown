@@ -42,3 +42,9 @@ class EntityDslImportConfiguration extends DefaultImportsConfiguration {
 ```
 
 This makes sure the imports get added in the right location.
+
+References:
+http://www.lorenzobettini.it/2013/01/the_ximportsection_in_xbase_2_4/
+https://bugs.eclipse.org/bugs/show_bug.cgi?id=377860
+https://www.eclipse.org/forums/index.php/t/486071/
+https://github.com/JanKoehnlein/XRobot/blob/master/org.xtext.xrobot.dsl/src/org/xtext/xrobot/dsl/imports/XRobotImportsConfiguration.xtend
