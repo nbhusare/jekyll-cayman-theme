@@ -18,7 +18,7 @@ Model:
 ```
 
 
-When you set the parent, an import is automaticaly added to your file (BUG - [377860](https://bugs.eclipse.org/bugs/show_bug.cgi?id=377860)). One of the problems you "might" face is that the import gets added in the wrong location (example below).
+When you set the parent, an import gets automatically added to your file ([377860](https://bugs.eclipse.org/bugs/show_bug.cgi?id=377860)). One of the problems you "might" face is that the import gets added in the wrong location (example below).
 
 ```
 model foo extends 
