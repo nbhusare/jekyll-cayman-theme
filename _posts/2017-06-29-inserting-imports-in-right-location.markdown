@@ -5,17 +5,19 @@ date:   2017-06-29
 categories: main
 ---
 
-Imagine you have a language like the one below - 1) Extends the Xbase language, 2) Has support for imports
+Imagine you have a language like the one below - 1) Inherits from org.eclipse.xtext.xbase.Xbase, 2) Has support for Imports
 
 ```
 grammar o.ss.xtext.entitydsl.EntityDsl with org.eclipse.xtext.xbase.Xbase
+
 generate entityDsl "http://www.ss.o/xtext/entitydsl/EntityDsl"
+
 Model:
 	imports=XImportSection?
 	'model' name=ID 'extends' parent=JvmTypeReference;	
 ```
 
-When you set the parent, an import is automaticaly added to your file (BUG - [377860](https://bugs.eclipse.org/bugs/show_bug.cgi?id=377860)). You could also use Organize imports to do so. One of the problems you might face is that the import gets added in the wrong location (PS example below).
+When you set the parent, an import is automaticaly added to your file (BUG - [377860](https://bugs.eclipse.org/bugs/show_bug.cgi?id=377860)). One of the problems you "might" face is that the import gets added in the wrong location (example below).
 
 ```
 model foo extends 
@@ -24,11 +26,12 @@ import java.lang.reflect.AnnotatedArrayType
 AnnotatedArrayType
 ```
 
-The solution to the problem is to define a class that extends "org.eclipse.xtext.xbase.imports.DefaultImportsConfiguration" and override the method "getImportSectionOffset". You also need to bind the implementation class in your DSL Runtime Module.
+The solution to the problem is to define a class that extends ```org.eclipse.xtext.xbase.imports.DefaultImportsConfiguration``` and override the method ```getImportSectionOffset```. You also need to bind the implementation class in your DSL Runtime Module.
 
 ```
 class EntityDslImportConfiguration extends DefaultImportsConfiguration {
 	
+    // Inser import in the right location
 	override getImportSectionOffset(XtextResource resource) {
 		val head = resource.contents.head
 		val node = head?.findActualNodeFor
@@ -36,8 +39,7 @@ class EntityDslImportConfiguration extends DefaultImportsConfiguration {
 			node.offset
 		else
 			0
-	}
-	
+	}	
 }
 ```
 
