@@ -7,7 +7,7 @@ categories: main
 
 In your Xtext project, it is common to come across situations where you have an input string and you need to - Parse, Validate and load it into a Resource set. If you have used EMF before, using the ResourceSet you would quickly create a Resource passing the URI and then load the input string into the resource. It will also give you the errors that are typically produced as the resource is loaded. 
 
-As the requirement is quit common, you might end up using the EMF API in multiple places and very quickly there is the same code repeated in multiple locations. Obviously this is bad and just adds to the maintanence headache. A utility can come handy in such situations.
+As the requirement is quit common, you migth end up duplicating the code in multiple locations in your codebase. Obviously this is bad and adds to the maintanence headache. A utility can come handy in such situations.
 
 ```
 class MyDslParser {
@@ -32,7 +32,7 @@ class MyDslParser {
 }
 ```
 
-If you are in a non-dsl project and you want the injector to work, you could get hold of the IResourceServiceProvider instance using the following technicques
+If you are in a non-dsl project and you want the injection to work, you can get hold of the "IResourceServiceProvider" instance using the following technicques
 
 ```
 val resourceServiceProvider = IResourceServiceProvider.Registry.INSTANCE.getResourceServiceProvider(URI.createURI("dummy.mydsl"))
