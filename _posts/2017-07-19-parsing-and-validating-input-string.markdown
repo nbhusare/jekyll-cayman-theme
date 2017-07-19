@@ -39,7 +39,7 @@ val resourceServiceProvider = IResourceServiceProvider.Registry.INSTANCE.getReso
 resourceServiceProvider.get(Injector).injectMembers(this)
 ```
 
-or you can call method getResourceServiceProvider() on an XtextResource instance as shown below.
+or you can call method "getResourceServiceProvider()" on an "XtextResource" instance as shown below.
 
 ```
 val validator = resource.resourceServiceProvider.resourceValidator
