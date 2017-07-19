@@ -46,4 +46,4 @@ val validator = resource.resourceServiceProvider.resourceValidator
 val issues = validator.validate(resource, CheckMode.ALL, cancelIndicator ?: CancelIndicator.NullImpl)
 ```
 
-PS - The code above is written using the [Eclipse Xtend](https://www.eclipse.org/xtend/) language
+PS - The code above is written using [Eclipse Xtend](https://www.eclipse.org/xtend/)
