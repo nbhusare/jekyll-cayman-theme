@@ -5,7 +5,7 @@ date:   2017-07-19
 categories: main
 ---
 
-In your Xtext project, it is common to come across situations where you have an input string and you need to - Parse, Validate and load it into a Resource set. If you have used EMF before, using the ResourceSet you would quickly create a Resource passing the URI and then load the input string into the resource. It will also give you the errors that are typically produced as the resource is loaded. 
+In your Xtext project, it is common to come across situations where you have an input string and you need to - Parse, Validate and load it into a Resource set. If you have used EMF before, you can create a Resource instance using the ResourceSet and load the input string into the resource. It will also give you the errors that are typically produced as the resource is loaded. 
 
 As the requirement is quit common, you migth end up duplicating the code in multiple locations in your codebase. Obviously this is bad and adds to the maintanence headache. A utility can come handy in such situations.
 
