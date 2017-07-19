@@ -1,52 +1,49 @@
 ---
 layout: default
-title:  "XBase - Inserting Imports in the right location"
-date:   2017-06-29
+title:  "Xtext - Parsing and Validating input string"
+date:   2017-07-19
 categories: main
 ---
 
-Imagine you have a language like the one below - 1) Inherits from org.eclipse.xtext.xbase.Xbase, 2) Has support for Imports
+In your Xtext project, it is common to come across situations where you have an input string and you need to - Parse, Validate and load it into a Resource set. If you have used EMF before, using the ResourceSet you would quickly create a Resource passing the URI and then load the input string into the resource. It will give you the errors that are typically produced as the resource is loaded. 
+
+As the requirement is quit common, you might end up using the EMF API in multiple places and very quickly there is the same code repeated in multiple locations. Obviously this is bad and just adds to the maintanence headache. A utility can come handy in such situations.
 
 ```
-grammar o.ss.xtext.entitydsl.EntityDsl with org.eclipse.xtext.xbase.Xbase
+class MyDslParser {
 
-generate entityDsl "http://www.ss.o/xtext/entitydsl/EntityDsl"
+	@Inject IResourceValidator validator
 
-Model:
-	imports=XImportSection?
-	'model' name=ID 'extends' parent=JvmTypeReference;	
-```
-
-
-When you set the parent, an import gets automatically added to your file ([377860](https://bugs.eclipse.org/bugs/show_bug.cgi?id=377860)). One of the problems you "might" face is that the import gets added in the wrong location (example below).
-
-```
-model foo extends 
-import java.lang.reflect.AnnotatedArrayType
-
-AnnotatedArrayType
-```
-
-
-The solution to the problem is to define a class that extends ```org.eclipse.xtext.xbase.imports.DefaultImportsConfiguration``` and override the method ```getImportSectionOffset```. You also need to bind the implementation class in your DSL Runtime Module.
-
-```
-class EntityDslImportConfiguration extends DefaultImportsConfiguration {
-	
-    // Inser import in the right location
-	override getImportSectionOffset(XtextResource resource) {
-		val head = resource.contents.head
-		val node = head?.findActualNodeFor
-		if (node != null)
-			node.offset
-		else
-			0
-	}	
+	def Model parse(String uri, String model, XtextResourceSet resourceSet, CancelIndicator cancelIndicator) {
+		val resource = resourceSet.createResource(URI.createURI(uri))
+		resource.load(new StringInputStream(model), null)
+		
+		// Check Syntactical errors. 
+		// The errors list is typically produced as the resource is loaded
+		if (!resource.errors.empty)
+			throw new ParseException('Syntax error:\n' + resource.errors.map[message].join('\n'))
+		
+		// Invoke your DSL validator for user defined validations
+		val issues = validator.validate(resource, CheckMode.ALL, cancelIndicator ?: CancelIndicator.NullImpl)
+		if (issues.exists[severity == ERROR])
+			throw new ParseException('Validation error:\n' + issues.filter[severity == ERROR].map[message].join('\n'))
+		resource.contents.head() as Model
+	}
 }
 ```
 
-This makes sure the imports get added in the right location.
+If you are in a non-dsl project and you want the injector to work, you could get hold of the IResourceServiceProvider instance using the following technicques
 
-References:                                                                                                                                                
-[The XImportSection in Xbase 2.4](http://www.lorenzobettini.it/2013/01/the_ximportsection_in_xbase_2_4/), [BUG 377860](https://bugs.eclipse.org/bugs/show_bug.cgi?id=377860)                                                                                         
-[https://www.eclipse.org/forums/index.php/t/486071/](https://www.eclipse.org/forums/index.php/t/486071/), [XRobotImportsConfiguration.xtend](https://github.com/JanKoehnlein/XRobot/blob/master/org.xtext.xrobot.dsl/src/org/xtext/xrobot/dsl/imports/XRobotImportsConfiguration.xtend)
+```
+val resourceServiceProvider = IResourceServiceProvider.Registry.INSTANCE.getResourceServiceProvider(URI.createURI("dummy.mydsl"))
+resourceServiceProvider.get(Injector).injectMembers(this)
+```
+
+or you can call method getResourceServiceProvider() on an XtextResource instance as shown below.
+
+```
+val validator = resource.resourceServiceProvider.resourceValidator
+val issues = validator.validate(resource, CheckMode.ALL, cancelIndicator ?: CancelIndicator.NullImpl)
+```
+
+PS - The code above is written using the [Eclipse Xtend](https://www.eclipse.org/xtend/) language
