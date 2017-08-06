@@ -73,7 +73,7 @@ class EntityDslIndex {
 
 The call ```indexProvider.getResourceDescriptions``` returns a index instance based on the context in which the resource set is used. The context is indicated by the load options ([resourceSet.getLoadOptions()](http://download.eclipse.org/modeling/emf/emf/javadoc/2.9.0/org/eclipse/emf/ecore/resource/ResourceSet.html#getLoadOptions())).
 
-The call to ```getVisibleContainers``` on a [IContainer.Manager](http://download.eclipse.org/modeling/tmf/xtext/javadoc/2.3/org/eclipse/xtext/resource/IContainer.Manager.html) returns the IContainer and all the visible containers. Following which, the call to ```getExportedObjects``` on all the visible containers returns the [IEObjectDescription]((http://download.eclipse.org/modeling/tmf/xtext/javadoc/2.3/org/eclipse/xtext/resource/IEObjectDescription.html) elements that are externally visible (globally exported) from a given resource.
+The call to ```getVisibleContainers``` on a [IContainer.Manager](http://download.eclipse.org/modeling/tmf/xtext/javadoc/2.3/org/eclipse/xtext/resource/IContainer.Manager.html) returns the IContainer and all the visible containers. Following which, the call to ```getExportedObjects``` on all the visible containers returns the [IEObjectDescription](http://download.eclipse.org/modeling/tmf/xtext/javadoc/2.3/org/eclipse/xtext/resource/IEObjectDescription.html) elements that are externally visible (globally exported) from a given resource.
 
 PS - The code above is written using Eclipse Xtend
 References - Documentation (http://www.eclipse.org/Xtext/documentation/2.5.0/Xtext%20Documentation.pdf), Book (https://goo.gl/J4ijTn)
