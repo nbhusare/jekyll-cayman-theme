@@ -75,6 +75,6 @@ The call to [indexProvider.getResourceDescriptions](http://download.eclipse.org/
 
 The call to [containerManager.getVisibleContainers](https://goo.gl/Pxasn2) on a [IContainer.Manager](http://download.eclipse.org/modeling/tmf/xtext/javadoc/2.3/org/eclipse/xtext/resource/IContainer.Manager.html) returns the [IContainer](http://download.eclipse.org/modeling/tmf/xtext/javadoc/2.3/org/eclipse/xtext/resource/IContainer.html) and all the visible containers. Following which, the call to [getExportedObjects](http://download.eclipse.org/modeling/tmf/xtext/javadoc/2.3/org/eclipse/xtext/resource/ISelectable.html#getExportedObjects()) on all the visible containers returns the [IEObjectDescription](http://download.eclipse.org/modeling/tmf/xtext/javadoc/2.3/org/eclipse/xtext/resource/IEObjectDescription.html) elements that are externally visible (globally exported) from a given resource.
 
----
+-
 PS - The code above is written using [Eclipse Xtend](https://www.eclipse.org/xtend/)                                                     
 References - [Documentation](http://www.eclipse.org/Xtext/documentation/2.5.0/Xtext%20Documentation.pdf), [Implementing Domain-Specific Languages with Xtext and Xtend](https://goo.gl/J4ijTn)
