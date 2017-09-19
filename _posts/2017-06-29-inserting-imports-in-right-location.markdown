@@ -1,6 +1,5 @@
 ---
 layout: default
-comments:true
 title:  "XBase - Inserting Imports in the right location"
 date:   2017-06-29
 categories: main
