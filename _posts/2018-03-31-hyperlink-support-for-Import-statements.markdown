@@ -7,7 +7,7 @@ categories: main
 
 # Hyperlink support for Import statements
 
-In Xtext DSL's, it is quite common to have cross-references (represented using **referenceName = [reference-type]**). You can have cross-references within or across files (a.k.a [Resource](http://download.eclipse.org/modeling/emf/emf/javadoc/2.4.2/org/eclipse/emf/ecore/resource/Resource.html])). In the latter case, you'll require explicit imports in order to reference the types. You could have [implicit-imports](http://download.eclipse.org/modeling/tmf/xtext/javadoc/2.9/org/eclipse/xtext/scoping/impl/ImportedNamespaceAwareLocalScopeProvider.html), but that is out of the scope of current discussion (assuming you are not using ).
+In Xtext DSL's, it is quite common to have cross-references (represented using **referenceName = [reference-type]**). You can have cross-references within or across files (a.k.a [Resource](http://download.eclipse.org/modeling/emf/emf/javadoc/2.4.2/org/eclipse/emf/ecore/resource/Resource.html])). In the latter case, you'll require explicit imports in order to reference the types. You could have [implicit-imports](http://download.eclipse.org/modeling/tmf/xtext/javadoc/2.9/org/eclipse/xtext/scoping/impl/ImportedNamespaceAwareLocalScopeProvider.html), but it is out of the scope of current discussion.
 
 In the editor, shortcuts "CTRL + Left Mouse click or F3" can be used for navigation. It works out-of-the-box for cross-references, but fails for import statements, especially for languages that extend from the Terminals grammar. 
 Hyperlink detection for import statements can be enabled by customizing the [HyperlinkHelper](http://download.eclipse.org/modeling/tmf/xtext/javadoc/2.3/org/eclipse/xtext/ui/editor/hyperlinking/HyperlinkHelper.html).
