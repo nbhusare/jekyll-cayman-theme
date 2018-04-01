@@ -85,5 +85,4 @@ The ImportWrapper provides a utility API for working with Import objects. The cl
 
 ---
 Source - [org.nb.xtext.example.hyperlink.entitydsl](https://github.com/nbhusare/Xtext-sandbox/tree/master/org.nb.xtext.example.hyperlink.entitydsl), [org.nb.xtext.example.hyperlink.entitydsl](https://github.com/nbhusare/Xtext-sandbox/tree/master/org.nb.xtext.example.hyperlink.entitydsl.ui)
-
-References - [XbaseHyperLinkHelper](http://download.eclipse.org/modeling/tmf/xtext/javadoc/2.9/org/eclipse/xtext/xbase/ui/navigation/XbaseHyperLinkHelper.html), (https://www.eclipse.org/forums/index.php/t/521907/)
+References - [XbaseHyperLinkHelper](http://download.eclipse.org/modeling/tmf/xtext/javadoc/2.9/org/eclipse/xtext/xbase/ui/navigation/XbaseHyperLinkHelper.html), [https://www.eclipse.org/forums/index.php/t/521907/](https://www.eclipse.org/forums/index.php/t/521907/)
