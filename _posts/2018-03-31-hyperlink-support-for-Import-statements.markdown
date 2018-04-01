@@ -79,7 +79,7 @@ public class EntityDslHyperlinkHelper extends TypeAwareHyperlinkHelper {
     }
 }
 ```
-In the overridden method #createHyperlinksByOffset(), we do the following - 1) Check if the object at a given offset is an instance of [Import](https://github.com/nbhusare/Xtext-sandbox/blob/master/org.nb.xtext.example.hyperlink.entitydsl/src-gen/org/nb/xtext/example/hyperlink/entitydsl/entityDsl/Import.java) and wrap it in the ImportWrapper, 2) Resolve the imported Entity Object using ImportWrapper#getImportedEntity(), 3) Calls method #createHyperlinksTo() that creates an [XtextHyperlink](http://download.eclipse.org/modeling/tmf/xtext/javadoc/2.9/org/eclipse/xtext/ui/editor/hyperlinking/XtextHyperlink.html) instance.
+In the overridden method #createHyperlinksByOffset(), we do the following - 1) Check if the object at a given offset is an instance of [Import](https://github.com/nbhusare/Xtext-sandbox/blob/master/org.nb.xtext.example.hyperlink.entitydsl/src-gen/org/nb/xtext/example/hyperlink/entitydsl/entityDsl/Import.java) and wrap it in the ImportWrapper, 2) Resolve the imported Entity Object using ImportWrapper#getImportedEntity(), 3) Call method #createHyperlinksTo() that creates an [XtextHyperlink](http://download.eclipse.org/modeling/tmf/xtext/javadoc/2.9/org/eclipse/xtext/ui/editor/hyperlinking/XtextHyperlink.html) instance.
 
 The ImportWrapper provides a utility API for working with Import objects. The class [EntityDslIndex](https://github.com/nbhusare/Xtext-sandbox/blob/master/org.nb.xtext.example.hyperlink.entitydsl/src/org/nb/xtext/example/hyperlink/entitydsl/index/EntityDslIndex.xtend) provides utility API for working with the Xtext index (PS - [Enriching Xtext Index API](https://nbhusare.github.io/main/2017/08/07/enriching-xtext-index-api.html))
 
