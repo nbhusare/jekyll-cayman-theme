@@ -7,9 +7,9 @@ categories: main
 
 # Hyperlink support for Import statements
 
-In Xtext DSL's, it is quite common to have cross-references (represented using referenceName = [reference-type]). You can have cross-references within or across files (a.k.a [Resource](http://download.eclipse.org/modeling/emf/emf/javadoc/2.4.2/org/eclipse/emf/ecore/resource/Resource.html])). In the latter case, you'll require imports in order to reference the types.You could choose to have [implicit-imports](http://download.eclipse.org/modeling/tmf/xtext/javadoc/2.9/org/eclipse/xtext/scoping/impl/ImportedNamespaceAwareLocalScopeProvider.html),but that is out of the scope of the current discussion.
+In Xtext DSL's, it is quite common to have cross-references (represented using **referenceName = [reference-type]**). You can have cross-references within or across files (a.k.a [Resource](http://download.eclipse.org/modeling/emf/emf/javadoc/2.4.2/org/eclipse/emf/ecore/resource/Resource.html])). In the latter case, you'll require imports in order to reference the types. You could choose to have [implicit-imports](http://download.eclipse.org/modeling/tmf/xtext/javadoc/2.9/org/eclipse/xtext/scoping/impl/ImportedNamespaceAwareLocalScopeProvider.html), but that is out of the scope of the current discussion.
 
-In the editor, shortcuts "CTRL + Left Mouse click or F3" can be used for navigating to the cross-referenced objects. It works out-of-the-box for cross-references, but fails for import statements, especially for languages that extend from the Terminals grammar. 
+In the editor, shortcuts "CTRL + Left Mouse click or F3" can be used for navigation. It works out-of-the-box for cross-references, but fails for import statements, especially for languages that extend from the Terminals grammar. 
 Hyperlink detection for import statements can be enabled by customizing the [HyperlinkHelper](http://download.eclipse.org/modeling/tmf/xtext/javadoc/2.3/org/eclipse/xtext/ui/editor/hyperlinking/HyperlinkHelper.html).
 
 ```
@@ -79,7 +79,9 @@ public class EntityDslHyperlinkHelper extends TypeAwareHyperlinkHelper {
     }
 }
 ```
-In the overridden method #createHyperlinksByOffset(), we do three things - 1) Checks if the object at a given offset is an instance of [Import](https://github.com/nbhusare/Xtext-sandbox/blob/master/org.nb.xtext.example.hyperlink.entitydsl/src-gen/org/nb/xtext/example/hyperlink/entitydsl/entityDsl/Import.java) and wrap it in the ImportWrapper. It provides utility API for working with Import objects, 2) Resolves the imported Entity Object using ImportWrapper#getImportedEntity(), 3) Calls method #createHyperlinksTo() to create an [XtextHyperlink](http://download.eclipse.org/modeling/tmf/xtext/javadoc/2.9/org/eclipse/xtext/ui/editor/hyperlinking/XtextHyperlink.html) object.
+In the overridden method #createHyperlinksByOffset(), we do the following - 1) Checks if the object at a given offset is an instance of [Import](https://github.com/nbhusare/Xtext-sandbox/blob/master/org.nb.xtext.example.hyperlink.entitydsl/src-gen/org/nb/xtext/example/hyperlink/entitydsl/entityDsl/Import.java) and wrap it in the ImportWrapper, 2) Resolves the imported Entity Object using ImportWrapper#getImportedEntity(), 3) Calls method #createHyperlinksTo() that creates an [XtextHyperlink](http://download.eclipse.org/modeling/tmf/xtext/javadoc/2.9/org/eclipse/xtext/ui/editor/hyperlinking/XtextHyperlink.html) instance.
+
+The ImportWrapper provides a utility API for working with Import objects. The class [EntityDslIndex](https://github.com/nbhusare/Xtext-sandbox/blob/master/org.nb.xtext.example.hyperlink.entitydsl/src/org/nb/xtext/example/hyperlink/entitydsl/index/EntityDslIndex.xtend) provides utility API for woring with the Xtext index (PS - [Enriching Xtext Index API](https://nbhusare.github.io/main/2017/08/07/enriching-xtext-index-api.html))
 
 ---
 Source - [org.nb.xtext.example.hyperlink.entitydsl](https://github.com/nbhusare/Xtext-sandbox/tree/master/org.nb.xtext.example.hyperlink.entitydsl), [org.nb.xtext.example.hyperlink.entitydsl](https://github.com/nbhusare/Xtext-sandbox/tree/master/org.nb.xtext.example.hyperlink.entitydsl.ui)
