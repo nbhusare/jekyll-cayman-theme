@@ -9,7 +9,7 @@ categories: main
 
 In DSL's, it is quite common to have Custom validations. In Xtext, such validations are defined in the generated Validator class by annotating the methods with [@Check](http://download.eclipse.org/modeling/tmf/xtext/javadoc/2.9/org/eclipse/xtext/validation/Check.html) annotation. Behind the scenes, these methods are invoked reflectively by the framework, while the user of the DSL is typing in the editor so that an immediate feedback is provided. In addition, you could augment the annotation with [CheckType](http://download.eclipse.org/modeling/tmf/xtext/javadoc/2.9/org/eclipse/xtext/validation/CheckType.html) value to control when a given validation method should be called.
 
-Typically, in projects, you'll have more than one DSL, each having it own custom validator. There are situations where you want a certain validation to be invoked that is "not" associated with the DSL being modified. For example - In the below DSL's, if I define a class as "deprecated", all its occurrences should be highlighted with an error. 
+Typically, in projects, you'll have more than one DSL's, each having it own custom validator. There are situations where you want a certain validation to be invoked that is "not" associated with the DSL being modified. For example - In the below DSL's, if I define a class as "deprecated", all its occurrences should be highlighted with an error. 
 
 ```
 namespace org.neclipse.example
@@ -27,9 +27,9 @@ In Xtext, an IEObjectDescription is used for representing a model object (EObjec
 The solution is to add user data (PS - IEObjectDescription#getUserData()) during the creation of the EObjectDescription of the Customer model. 
 
 ```
-class SmallJavaDslResourceDescriptionStrategy extends DefaultResourceDescriptionStrategy {
+class SmallClassDslResourceDescriptionStrategy extends DefaultResourceDescriptionStrategy {
 
-	private final static Logger LOG = Logger.getLogger(SmallJavaDslResourceDescriptionStrategy)
+	private final static Logger LOG = Logger.getLogger(SmallClassDslResourceDescriptionStrategy)
 
 	private static val DEPRECATED = "deprecated"
 
