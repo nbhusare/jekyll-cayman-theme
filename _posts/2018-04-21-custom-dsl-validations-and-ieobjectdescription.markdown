@@ -31,19 +31,17 @@ In Xtext, an [IEObjectDescription](http://download.eclipse.org/modeling/tmf/xtex
 There are three ways to solve the problem
 
 1. Using CheckType.Fast
-2. Creating IEObjectDescription with additional Data
-3. Customizing the DefaultResourceDescriptionManager so that all DSL validations are called even if the EOD state remains unchanged
+2. Customizing the DefaultResourceDescriptionManager so that all DSL validations are called even if the EOD state remains unchanged
+3. Creating IEObjectDescription with additional Data
 
 ### 1. Using CheckType.Fast
 
 **CheckType.Fast** is generally used when you want to provide "instant feedback" while the user is typing in the DSL editor. 
 In the above case, the editors have to be open (if not active) for its validations to be called. This is not always the desired behavior. Also, CheckType.Fast cannot be used with all the methods as it might degrade the editors performance.  
 
-### 2. Creating IEObjectDescription with additional Data
+### 2. Customizing the DefaultResourceDescriptionManager so that all DSL validations are called even if the EOD state remains unchanged
 
-
-
-### 3. Customizing the DefaultResourceDescriptionManager so that all DSL validations are called even if the EOD state remains unchanged
+### 3. Creating IEObjectDescription with additional Data
 
 
 
