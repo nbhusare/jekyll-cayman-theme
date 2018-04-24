@@ -34,26 +34,26 @@ There are three ways to solve the problem
 2. Customizing the DefaultResourceDescriptionManager so that all DSL validations are called even if the EOD state remains unchanged
 3. Creating IEObjectDescription with additional Data
 
-### 1. Using CheckType.Fast
+## 1. Using CheckType.Fast
 
 **CheckType.Fast** is generally used when you want to provide "instant feedback" while the user is typing in the DSL editor. 
 In the above case, the editors have to be open (if not active) for its validations to be called. This is not always the desired behavior. Also, CheckType.Fast cannot be used with all the methods as it might degrade the editors performance.  
 
 ```
-	@Check(CheckType.FAST)
-	def checkFunctionParams(Func func) {
-		func.params.forEach [ param, index |
-			if (param.dataType instanceof ClassType) {
-				val dataType = param.dataType as ClassType
-				if (dataType.type.isDeprecated) {
-					error("Invalid param " + param.name, param, FuncDslPackage.Literals.PARAM__NAME, index)
-				}
+@Check(CheckType.FAST)
+def checkFunctionParams(Func func) {
+	func.params.forEach [ param, index |
+		if (param.dataType instanceof ClassType) {
+			val dataType = param.dataType as ClassType
+			if (dataType.type.isDeprecated) {
+				error("Deprecated param " + param.name, param, FuncDslPackage.Literals.PARAM__NAME, index)
 			}
-		]
-	}
+		}
+	]
+}
 ```
 
-### 2. Customizing the DefaultResourceDescriptionManager so that all DSL validations are called even if the EOD state remains unchanged
+## 2. Customizing the DefaultResourceDescriptionManager so that all DSL validations are called even if the EOD state remains unchanged
 
 ```
 @Singleton
@@ -73,7 +73,9 @@ public class FuncDslResourceDescriptionManager extends DefaultResourceDescriptio
 }
 ```
 
-### 3. Creating IEObjectDescription with additional Data
+
+
+## 3. Creating IEObjectDescription with additional Data
 
 ```
 class ClazzDslResourceDescriptionStrategy extends DefaultResourceDescriptionStrategy {
