@@ -39,18 +39,46 @@ There are three ways to solve the problem
 **CheckType.Fast** is generally used when you want to provide "instant feedback" while the user is typing in the DSL editor. 
 In the above case, the editors have to be open (if not active) for its validations to be called. This is not always the desired behavior. Also, CheckType.Fast cannot be used with all the methods as it might degrade the editors performance.  
 
+```
+	@Check(CheckType.FAST)
+	def checkFunctionParams(Func func) {
+		func.params.forEach [ param, index |
+			if (param.dataType instanceof ClassType) {
+				val dataType = param.dataType as ClassType
+				if (dataType.type.isDeprecated) {
+					error("Invalid param " + param.name, param, FuncDslPackage.Literals.PARAM__NAME, index)
+				}
+			}
+		]
+	}
+```
+
 ### 2. Customizing the DefaultResourceDescriptionManager so that all DSL validations are called even if the EOD state remains unchanged
+
+```
+@Singleton
+public class FuncDslResourceDescriptionManager extends DefaultResourceDescriptionManager
+		implements IResourceDescription.Manager.AllChangeAware {
+
+	@Override
+	public boolean isAffectedByAny(Collection<Delta> deltas, IResourceDescription candidate,
+			IResourceDescriptions context) throws IllegalArgumentException {
+		return isAffected(deltas, candidate, context);
+	}
+
+	@Override
+	protected boolean hasChanges(Delta delta, IResourceDescription candidate) {
+		return true;
+	}
+}
+```
 
 ### 3. Creating IEObjectDescription with additional Data
 
-
-
-The solution is to add user data (PS - IEObjectDescription#getUserData()) during the creation of the EObjectDescription of the Customer model. 
-
 ```
-class SmallClassDslResourceDescriptionStrategy extends DefaultResourceDescriptionStrategy {
+class ClazzDslResourceDescriptionStrategy extends DefaultResourceDescriptionStrategy {
 
-	private final static Logger LOG = Logger.getLogger(SmallClassDslResourceDescriptionStrategy)
+	private final static Logger LOG = Logger.getLogger(ClazzDslResourceDescriptionStrategy)
 
 	private static val DEPRECATED = "deprecated"
 
@@ -71,12 +99,11 @@ class SmallClassDslResourceDescriptionStrategy extends DefaultResourceDescriptio
 
 	def createUserData(EObject eObject) {
 		val Builder<String, String> userData = ImmutableMap.builder()
-		if (eObject instanceof SmallClass) {
+		if (eObject instanceof Clazz) {
 			userData.put(DEPRECATED, Boolean.toString(eObject.isDeprecated))
 		}
 		return userData.build
 	}
-
 }
 ```
 
