@@ -26,7 +26,7 @@ import org.neclipse.example.Customer
 func TestFunction (Customer customer, String param1, Customer param2...) { } 
 ```
 
-In Xtext, an [IEObjectDescription](http://download.eclipse.org/modeling/tmf/xtext/javadoc/2.9/org/eclipse/xtext/resource/IEObjectDescription.html) is used for representing a model object (EObject). It has a name, URI and may have some additional data. In the example above, making the Customer clazz as deprecated won't alter the "state" of the associated EOD, by virtue of which the the Xtext builder will not invoke the validator for the Function DSL (PS - [ClusteringBuilderState#queueAffectedResources()](https://github.com/eclipse/xtext-eclipse/blob/master/org.eclipse.xtext.builder/src/org/eclipse/xtext/builder/clustering/ClusteringBuilderState.java)). The validator for the Clazz DSL will only be called.
+In Xtext, an [IEObjectDescription](http://download.eclipse.org/modeling/tmf/xtext/javadoc/2.9/org/eclipse/xtext/resource/IEObjectDescription.html) is used for representing a model object (EObject). It has a name, URI and may have some additional data. In the example above, making the Customer clazz as deprecated won't alter the "state" of the associated EOD, by virtue of which the Xtext builder will not invoke the validator for the Function DSL (PS - [ClusteringBuilderState#queueAffectedResources()](https://github.com/eclipse/xtext-eclipse/blob/master/org.eclipse.xtext.builder/src/org/eclipse/xtext/builder/clustering/ClusteringBuilderState.java)). The validator for the Clazz DSL will only be called.
 
 There are two ways to solve the problem
 
