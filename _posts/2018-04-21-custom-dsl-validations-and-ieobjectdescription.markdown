@@ -5,7 +5,7 @@ date:   2018-04-21
 categories: main
 ---
 
-# Invoking Cross DSL Validations
+# Invoking Cross DSL Validations (DRAFT VERSION)
 
 In DSL's, it is quite common to have Custom validations. With Xtext, such validations are defined in the generated Validator class by annotating the methods with [@Check](http://download.eclipse.org/modeling/tmf/xtext/javadoc/2.9/org/eclipse/xtext/validation/Check.html) annotation. Behind the scenes, these methods are invoked reflectively by the framework while the user of the DSL is typing in the editor so that an immediate feedback is provided. In addition, you could use a [CheckType](http://download.eclipse.org/modeling/tmf/xtext/javadoc/2.9/org/eclipse/xtext/validation/CheckType.html) value to control when a given validation method should be called.
 
