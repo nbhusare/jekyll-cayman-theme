@@ -52,7 +52,9 @@ public class FuncDslResourceDescriptionManager extends DefaultResourceDescriptio
     }
 }
 ```
-Above, the FuncDslResourceDescriptionManager implements the [IResourceDescription.Manager.AllChangeAware](http://download.eclipse.org/modeling/tmf/xtext/javadoc/2.9/org/eclipse/xtext/resource/IResourceDescription.Manager.AllChangeAware.html) interface so that it is notified for all changes. In the overridden method  [isAffectedByAny()](http://download.eclipse.org/modeling/tmf/xtext/javadoc/2.9/org/eclipse/xtext/resource/IResourceDescription.Manager.AllChangeAware.html#isAffectedByAny(java.util.Collection,%20org.eclipse.xtext.resource.IResourceDescription,%20org.eclipse.xtext.resource.IResourceDescriptions)), we invoke the super [isAffected()](http://download.eclipse.org/modeling/tmf/xtext/javadoc/2.9/org/eclipse/xtext/resource/impl/DefaultResourceDescriptionManager.html#isAffected(java.util.Collection,%20org.eclipse.xtext.resource.IResourceDescription,%20org.eclipse.xtext.resource.IResourceDescriptions)) which checks if the passed IResourceDescription (candidate here) is affected by the given deltas. In the overridden method **hasChanges()**, we always return true to indicate that all the deltas resulting from the build have changes, even if there is no actual change.
+The above changes ensure that the passed IResourceDescription is added to the queue of the affected resources to be processed.
+
+The method [DefaultResourceDescriptionManager#hasChanges()](http://download.eclipse.org/modeling/tmf/xtext/javadoc/2.9/org/eclipse/xtext/resource/impl/DefaultResourceDescriptionManager.html#hasChanges(org.eclipse.xtext.resource.IResourceDescription.Delta,%20org.eclipse.xtext.resource.IResourceDescription)) checks if the [passed delta has changes](http://download.eclipse.org/modeling/tmf/xtext/javadoc/2.9/org/eclipse/xtext/resource/IResourceDescription.Delta.html#haveEObjectDescriptionsChanged()). We override the method and return true to indicate that the passed delta has changes even if there is no actual change.  
 
 ### 2. Creating IEObjectDescription with additional Data
 
