@@ -54,7 +54,7 @@ public class FuncDslResourceDescriptionManager extends DefaultResourceDescriptio
 ```
 The above change ensures that the passed IResourceDescription is added to the queue of the affected resources to be processed.
 
-The method [DefaultResourceDescriptionManager#hasChanges()](http://download.eclipse.org/modeling/tmf/xtext/javadoc/2.9/org/eclipse/xtext/resource/impl/DefaultResourceDescriptionManager.html#hasChanges(org.eclipse.xtext.resource.IResourceDescription.Delta,%20org.eclipse.xtext.resource.IResourceDescription)) checks if the [passed delta has changes](http://download.eclipse.org/modeling/tmf/xtext/javadoc/2.9/org/eclipse/xtext/resource/IResourceDescription.Delta.html#haveEObjectDescriptionsChanged()). We override the method and **return true** to indicate that the passed delta has changes even if there is no actual change.  
+The method [DefaultResourceDescriptionManager#hasChanges()](http://download.eclipse.org/modeling/tmf/xtext/javadoc/2.9/org/eclipse/xtext/resource/impl/DefaultResourceDescriptionManager.html#hasChanges(org.eclipse.xtext.resource.IResourceDescription.Delta,%20org.eclipse.xtext.resource.IResourceDescription)) checks if the [passed delta has changes](http://download.eclipse.org/modeling/tmf/xtext/javadoc/2.9/org/eclipse/xtext/resource/IResourceDescription.Delta.html#haveEObjectDescriptionsChanged()). We override this method and **return true**, to indicate that the passed delta has changes even if there are no actual changes.  
 
 ### 2. Adding user-data to the created [EObjectDescription](http://download.eclipse.org/modeling/tmf/xtext/javadoc/2.9/org/eclipse/xtext/resource/IEObjectDescription.html)
 
