@@ -97,6 +97,7 @@ Above, user data is added while creating an EObjectDescription for the Clazz EOb
 This being said, the call to [DefaultResourceDescriptionManager#hasChanges()](http://download.eclipse.org/modeling/tmf/xtext/javadoc/2.9/org/eclipse/xtext/resource/impl/DefaultResourceDescriptionManager.html#hasChanges(org.eclipse.xtext.resource.IResourceDescription.Delta,%20org.eclipse.xtext.resource.IResourceDescription)) returns true for IResourceDescription representing the TestFunction. The same is added to the queue of resources affected by the build. The validator for the Function DSL is called along with the Class DSL.
 
 The advantage of this approach is that you can selectively choose the changes on which the cross-dsl validaion should be called.
+
 ---
 Source code - [ClazzDslResourceDescriptionStrategy](https://github.com/nbhusare/Xtext-sandbox/blob/master/org.neclipse.xtext.validator.example.clazzdsl/src/org/neclipse/xtext/validator/example/clazzdsl/descriptions/ClazzDslResourceDescriptionStrategy.xtend), [FuncDslResourceDescriptionManager](https://github.com/nbhusare/Xtext-sandbox/blob/master/org.neclipse.xtext.validator.example.funcdsl/src/org/neclipse/xtext/validator/example/funcdsl/descriptions/FuncDslResourceDescriptionManager.java)
 References - [https://www.eclipse.org/forums/index.php/m/1724947/](https://www.eclipse.org/forums/index.php/m/1724947/)
