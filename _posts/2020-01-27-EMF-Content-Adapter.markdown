@@ -65,7 +65,7 @@ public class ProjectAdapter extends AdapterImpl {
 resourceSet.eAdapters().add(new ProjectAdapter())
 ```
 
-In the above example, we extend the behavior of the EMF [ResourceSet](https://download.eclipse.org/modeling/emf/emf/javadoc/2.5.0/org/eclipse/emf/ecore/resource/ResourceSet.html) by associating a `ProjectAdapter`. The extended ResourceSet can now give the information about the Project that was used for its creation. The associated ProjectAdapter and hench the Project can be obtained using `EcoreUtil.getAdapter(resourceSet.eAdapters(), IProject.class)`, and `projectAdapter.getProject()`.
+In the above example, we extend the behavior of the EMF [ResourceSet](https://download.eclipse.org/modeling/emf/emf/javadoc/2.5.0/org/eclipse/emf/ecore/resource/ResourceSet.html) by associating a `ProjectAdapter`. The extended ResourceSet can now give the information about the Project that was used for its creation. The associated ProjectAdapter and hence the Project can be obtained using `EcoreUtil.getAdapter(resourceSet.eAdapters(), IProject.class)`, and `projectAdapter.getProject()`.
 
 # EMF Content Adapter
 
