@@ -1,13 +1,13 @@
 # Setup
-title:        Pumori
-tagline:      Technology Blog
-baseurl:      ""
-paginate:     1
+title: Eclipse Modeling
+tagline: Technology Blog
+baseurl: ""
+paginate: 1
 
 # About/contact
 author:
-  name:       Neeraj Bhusare
-  url:        http://nbhusare.github.io
+  name: Neeraj Bhusare
+  url: http://nbhusare.github.io
 
 # Gems
 gems:
