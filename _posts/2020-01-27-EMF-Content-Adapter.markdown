@@ -99,4 +99,4 @@ product.eAdapters().add(new ProductStateChangeAdapter());
 
 [EMF: Eclipse Modeling Framework Book](https://www.amazon.com/EMF-Eclipse-Modeling-Framework-2nd/dp/0321331885),
 [EMF discussion forum](https://www.eclipse.org/forums/index.php?t=thread&frm_id=108),
-https://eclipsesource.com/blogs/2013/04/23/emf-dos-and-donts-7/, https://eclipsesource.com/blogs/2013/05/06/emf-dos-and-donts-8/
+[emf-dos-and-donts-7](https://eclipsesource.com/blogs/2013/04/23/emf-dos-and-donts-7/), [emf-dos-and-donts-8](https://eclipsesource.com/blogs/2013/05/06/emf-dos-and-donts-8/).
