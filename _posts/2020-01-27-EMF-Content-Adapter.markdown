@@ -19,7 +19,6 @@ public void setCode(String newCode) {
 		eNotify(new ENotificationImpl(this, Notification.SET,
 		CreditcardPackage.REGION__CODE, oldCode, code));
 }
-
 ```
 
 # EMF Adapters
@@ -34,17 +33,14 @@ public class RegionChangeListener extends AdapterImpl{
 	public void notifyChanged(Notification notification) {
 		super.notifyChanged(notification);
 
-		final String eClassName = ((Region)
-		notification.getNotifier()).eClass().getName();
-		final String featureName = ((EAttribute)
-		notification.getFeature()).getName();
-		System.out.println(String.format("Feature `%1$s` of EClass `%2$s`
-		Changed", featureName, eClassName));
+		final String eClassName = ((Region) notification.getNotifier()).eClass().getName();
+		final String featureName = ((EAttribute)notification.getFeature()).getName();
+		System.out.println(String.format("Feature `%1$s` of EClass `%2$s` Changed", featureName, eClassName));
 	}
 }
 ```
 
-The `RegionChangeListener` listens to the changes made to the Region model instance. The overridden method notifyChanged() is invoked whenever the state of the Region changes, for example, the value of the attribute `code` is updated. The parameter `Notification` can be used for obtaining the information of the source EObject (A.K.A Notifier), the affected structural feature, the type of the change, and the new and the old values. The adapter can be hooked onto the Region instance using `region.eAdapters().add(new RegionChangeObserver()`, and removed using `region.eAdapters().remove(regionChangeAdaterInstance)`. Removing the adapter from an EObject will remove it from all its contents.
+The `RegionChangeListener` listens to the changes made to the `Region` model instance. The overridden method `notifyChanged()` is invoked whenever the state of the Region changes, for example, the value of the attribute `code` is updated. The parameter `Notification` can be used for obtaining the information of the source EObject (A.K.A Notifier), the affected structural feature, the type of the change, and the new and the old values. The adapter can be hooked onto the Region instance using `region.eAdapters().add(new RegionChangeObserver()`, and removed using `region.eAdapters().remove(regionChangeAdaterInstance)`. Removing the adapter from an EObject will _remove it from all its contents_.
 
 ## Extending the EObject/Resource/ResourceSet behavior
 
@@ -68,7 +64,7 @@ public class ProjectAdapter extends AdapterImpl{
 resourceSet.eAdapters().add(new ProjectAdapter())
 ```
 
-In the above example, we extend the behavior of the EMF ResourceSet by associating a ProjectAdapter. The extended ResourceSet can now give the information about the Project that was used for its creation. The associated ProjectAdapter and hench the Project, can be obtained using `EcoreUtil.getAdapter(resourceSet.eAdapters(), IProject.class)`, `projectAdapter.getProject()`.
+In the above example, we extend the behavior of the EMF `ResourceSet` by associating a `ProjectAdapter`. The extended ResourceSet can now give the information about the Project that was used for its creation. The associated ProjectAdapter and hench the Project can be obtained using `EcoreUtil.getAdapter(resourceSet.eAdapters(), IProject.class)`, and `projectAdapter.getProject()`.
 
 # EMF Content Adapter
 
@@ -95,7 +91,7 @@ product.eAdapters().add(new ProductStateChangeAdapter());
 
 - As the object hierarchy changes, the adapters should be attached and disposed of correctly. Not disposing of the adapters leads to memory leaks. They will be notified of every state change of the EObject and all its contents, which is not desirable. In some cases, exceptions are thrown
 - EContentAdapters are convenient, however, attaching them to an EObject having a huge containment hierarchy can be quite time-consuming. In general, your first choice should be to attach adapters to the EObjects that are of interest for specific update operations
-- Special care should be taken while implementing the overridden notifyChanged() method. It should not be a heavyweight operation or impact the user experience in any way
+- Special care should be taken while implementing the overridden `notifyChanged()` method. It should not be a heavyweight operation or impact the user experience in any way
 - `eAdapters()` returns a simple list. It is important that you check if the given adapter instance exists before adding to the list.
 
 # References
