@@ -5,7 +5,7 @@ date: 2020-02-04
 categories: main
 ---
 
-# EMF EPackage and Resource Factory Registry
+# **EMF EPackage and Resource Factory Registry**
 
 An EPackage in [EMF](https://www.eclipse.org/modeling/emf/) is the source of the model meta-data (eClass, eAttribute…etc). The generated EPackage class provides API for accessing the meta-data, it programmatically builds the ECore model (typically created using the ECore editor), and registers the created EPackage in the Global EPackage registry.
 
