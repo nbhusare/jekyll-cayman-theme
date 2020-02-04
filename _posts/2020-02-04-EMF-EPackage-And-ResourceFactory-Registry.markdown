@@ -36,7 +36,7 @@ final EObject eObject = resource.getContents().get(0);
 
 ## EMF Resource Factory and Resource Factory Registry
 
-When you call `ResourceSet#createResource(URI)`, the Resource Factory is consulted to create a new Resource instance. The scheme, protocol, or the file extension of the passed URI is used while selecting a partiular resource factory. It also decides the format in which the objects are to be persisted. For example, the default EMF Resource Factory `XMIResourceFactoryImpl` is used for creating `XMIResource` instances, and persist the object in the [XMI](https://www.omg.org/spec/XMI/About-XMI/) format.
+When you call `ResourceSet#createResource(URI)`, the Resource Factory is used for creating a new Resource instance. The scheme, protocol, or the file extension of the passed URI is used while selecting a partiular resource factory. It also decides the format in which the objects are to be persisted. For example, the default EMF Resource Factory `XMIResourceFactoryImpl` is used for creating `XMIResource` resource instances, and persist the object in the [XMI](https://www.omg.org/spec/XMI/About-XMI/) format.
 
 A Resource factory can be registered either in Local (`ResourceSet#getResourceFactoryRegistry()`) or the Global (`Resource.Factory.Registry.INSTANCE`) registry. Similar to the EPackage registry, the requested factory is first checked in the local registry, and then the global registry. Calling `ResourceSet#createResource(URI)` returns a `null` value if the factory cannot be found in either of the above registries. The following code demonstrates the registration process
 
