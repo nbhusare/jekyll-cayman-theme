@@ -7,9 +7,9 @@ categories: main
 
 # **EMF Proxy resolution**
 
-In [EMF](https://www.eclipse.org/modeling/emf/), an `EReference` represents a relation between two objects (Source and the Target). By setting value of the **Containment** property, it can be modeled as **containment** or a **non-containment** reference. In the earlier case, the target object is contained inside the source (its container). It persists in the same resource as its container and can give the information of its container (using `eObject.eContainer()`). In the latter case, the two objects can be persisted in the same or different resources. Typically, Proxy resolution is related but-not-limited to the latter case.
+In [EMF](https://www.eclipse.org/modeling/emf/), an `EReference` represents a relation between two objects (Source and the Target). By setting the value of **Containment** property, it can be modeled as **containment** or a **non-containment** reference. In the earlier case, the target object is contained inside the source (its container). It persists in the same resource as its container and can give the information of its container (using `EObject#eContainer()`). In the latter case, the two objects can be persisted in the same or different resources. Typically, Proxy resolution is related but-not-limited to the latter case.
 
-When you talk of proxy resolution in EMF, two properties play an important role - **Resolve Proxies** and **Containment Proxies**. The earlier can be modified from the .ecore file and the later from the .genmodel file. The value of these two fields decide whether a reference is **proxy resolving** or **non-proxy resolving**, and the code is generated accordingly. By default, non-containment references are proxy resolving, whereas, containment references are non-proxy resolving. Below we explain in a bit more detail using the generated code as a reference
+When you talk of proxy resolution in EMF, two properties play an important role - **Resolve Proxies** and **Containment Proxies**. The earlier can be modified from the .ecore file and the later from the .genmodel file. The value of these two fields decides whether a reference is **proxy resolving** or **non-proxy resolving**, and also influences the generated code. By default, non-containment references are proxy resolving, whereas, containment references are non-proxy resolving. Below we explain in a bit more detail using the generated code as a reference
 
 ## EReference (non-containment)
 
@@ -18,9 +18,9 @@ The below code is generated for the reference `region`. It is a **single-valued,
 ```
 public Region getRegion() {
   if (region != null && region.eIsProxy()) {
-  InternalEObject oldRegion = (InternalEObject)region;
-  region = (Region)eResolveProxy(oldRegion);
-  ...
+    InternalEObject oldRegion = (InternalEObject)region;
+    region = (Region)eResolveProxy(oldRegion);
+    ...
   }
   return region;
 }
@@ -28,15 +28,14 @@ public Region getRegion() {
 
 ## EReference (containment)
 
-The below code is generated for the reference `features`. It is a **multi-valued, non-proxy resolving, containment** reference. An interesting thing here is that the generated code does not contain any proxy resolution logic, even though the value of the "Resolve Proxies" filed is true. This is because the value of "Containment Proxies" value is set to **false** (default value).
+The below code is generated for the reference `features`. It is a **multi-valued, non-proxy resolving, containment** reference. An interesting thing here is that the generated code does not contain any proxy resolution logic, even though the value of the "Resolve Proxies" property is set to true. This is because the value of "Containment Proxies" property is set to **false** (default value).
 
-In the case of containment references, the combination of the above two fields decide whether the generated code contains proxy resolution or non-proxy resolution logic
+In the case of containment references, the combination of the above two fields decide whether the generated code contains proxy resolution logic or not
 
 ```
 public EList<Feature> getFeatures() {
 	if (features == null) {
-		features = new EObjectContainmentEList<Feature>(Feature.class, this,
-		CreditcardPackage.PRODUCT__FEATURES);
+		features = new EObjectContainmentEList<Feature>(Feature.class, this, CreditcardPackage.PRODUCT__FEATURES);
 	}
 	return features;
 }
@@ -46,13 +45,12 @@ In the above code, a simple `EObjectContainmentEList` is generated.
 
 ## EReference (containment)
 
-The below code is generated for the reference features. Like above, it is a **multi-valued, non-proxy resolving, containment** reference, with one difference, the value of "Containment Proxies" field is set to **true**. By setting this value, we make it possible for the source and the contained object to persist in different resources. This is quite powerful as it now allows the contained objects to be dealt with separately as top-level objects
+The below code is generated for the reference features. Like above, it is a **multi-valued, non-proxy resolving, containment** reference, with one difference, the value of "Containment Proxies" field is set to **true**. By setting this value, we make it possible for the source and the contained object to persist in different resources. This is quite powerful as it allows the contained objects to be dealt with separately as top-level objects
 
 ```
  public EList<Feature> getFeatures() {
 	if (features == null) {
-		features = new EObjectContainmentEList.Resolving<Feature>(Feature.class, this,
-		CreditcardPackage.PRODUCT__FEATURES);
+		features = new EObjectContainmentEList.Resolving<Feature>(Feature.class, this, CreditcardPackage.PRODUCT__FEATURES);
 	}
 	return features;
 }
