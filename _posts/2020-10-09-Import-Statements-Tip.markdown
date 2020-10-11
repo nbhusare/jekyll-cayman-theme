@@ -22,7 +22,7 @@ Entity:
 	'entity' name=ID ('parent' parent=[Entity])?;
 ```
 
-Using the above grammar definition, you can define entities and set a parent of a given entity. The parent can be defined in the same or a separate file. In the latter case, you need to define an import statement (**import** package_name.\* or **import** package_name.Entity_name) for the referenced entity to be resolved. The problem is that you have to define imports even if the two (entity and its parent) are defined in the same package (PS below)
+Using the above [Xtext](https://www.eclipse.org/Xtext/) grammar definition, you can define entities and set a parent of a given entity. The parent can be defined in the same or a separate file. In the latter case, you need to define an import statement (**import** package_name.\* or **import** package_name.Entity_name) for the referenced entity to be resolved. The problem is that you have to define imports even if the two (entity and its parent) are defined in the same package (PS below)
 
 ```
 package accounts
